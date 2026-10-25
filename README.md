@@ -4,11 +4,11 @@ A website for early access to new NuttyVR projects, Mora (Nuttyinc’s encryptio
 
 Website: https://nuttyinc578.github.io/nuttyinc-early-access-program/
 
-## Publish with GitHub Pages
+## Publish and update with GitHub Pages
 
 The site is plain HTML, CSS, JavaScript, and SVG. No dependencies, build, tokens, or backend are needed.
 
-1. Commit these files to the repository’s `main` branch, keeping `index.html` at the root.
+1. Commit website updates to the repository’s `main` branch, keeping `index.html` at the root.
 2. Open **Settings → Pages** in the repository.
 3. Choose **Deploy from a branch**, **main**, and **/(root)**, then save.
 4. Wait for the **pages build and deployment** action to finish.
