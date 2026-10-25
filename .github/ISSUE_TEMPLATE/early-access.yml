@@ -1,0 +1,30 @@
+name: Early access request
+description: Request early access to NuttyVR, Mora, or upcoming features.
+title: "Early access request"
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for your interest in the Nuttyinc Early Access Program! This request is public. Do not include passwords, encryption keys, private files, or personal contact details. Access depends on available builds."
+  - type: dropdown
+    id: interest
+    attributes:
+      label: What would you like to try?
+      options:
+        - A little of everything
+        - NuttyVR projects
+        - Mora encryption app
+        - Upcoming features
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything you would like us to know?
+      description: Optional. Share what interests you or a feature you would like to try.
+  - type: checkboxes
+    id: understanding
+    attributes:
+      label: Before you submit
+      options:
+        - label: I understand this request is public and access depends on build availability.
+          required: true

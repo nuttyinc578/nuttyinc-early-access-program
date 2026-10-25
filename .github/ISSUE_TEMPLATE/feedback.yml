@@ -1,0 +1,28 @@
+name: Program feedback
+description: Share a bug, idea, or experience from an early access build.
+title: "[Feedback] "
+body:
+  - type: input
+    id: project
+    attributes:
+      label: Project and build version
+      placeholder: e.g. NuttyVR project name and version
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type of feedback
+      options:
+        - Bug report
+        - Feature idea
+        - General feedback
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Tell us more
+      description: "For bugs, include steps to reproduce, expected behavior, and actual behavior. Issues are public: do not upload private files, passwords, or encryption keys."
+    validations:
+      required: true
