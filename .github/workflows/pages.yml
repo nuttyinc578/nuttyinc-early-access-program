@@ -14,20 +14,36 @@ on:
   workflow_dispatch:
 
 permissions:
+  contents: read
   pages: write
+  id-token: write
 
 concurrency:
-  group: nuttyinc-pages-build
+  group: pages
   cancel-in-progress: false
 
 jobs:
-  request-pages-build:
-    name: Request GitHub Pages build
+  deploy:
+    name: Deploy website
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Publish the latest website
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-        run: gh api --method POST "repos/${GH_REPO}/pages/builds"
+      - name: Check out website
+        uses: actions/checkout@v4
+      - name: Set up GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Stage website files
+        run: |
+          mkdir -p _site
+          cp index.html 404.html styles.css app.js .nojekyll _site/
+          cp -R assets _site/assets
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
