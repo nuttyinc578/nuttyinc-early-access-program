@@ -1,0 +1,33 @@
+name: Publish website on GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - 404.html
+      - styles.css
+      - app.js
+      - assets/**
+      - .nojekyll
+      - .github/workflows/pages.yml
+  workflow_dispatch:
+
+permissions:
+  pages: write
+
+concurrency:
+  group: nuttyinc-pages-build
+  cancel-in-progress: false
+
+jobs:
+  request-pages-build:
+    name: Request GitHub Pages build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Publish the latest website
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh api --method POST "repos/${GH_REPO}/pages/builds"
