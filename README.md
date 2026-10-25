@@ -10,10 +10,12 @@ The site is plain HTML, CSS, JavaScript, and SVG. No dependencies, build, tokens
 
 1. Commit website updates to the repository’s `main` branch, keeping `index.html` at the root.
 2. Open **Settings → Pages** in the repository.
-3. Choose **Deploy from a branch**, **main**, and **/(root)**, then save.
-4. Wait for the **pages build and deployment** action to finish.
+3. Choose **GitHub Actions** as the publishing source.
+4. Open **Actions → Publish website on GitHub Pages → Run workflow**, choose `main`, and run it. Wait for the **Deploy website** job to succeed.
 
-The repository already has Pages enabled. Confirm its existing publishing source is `main` / `/(root)` before changing it. See [GitHub’s publishing source guide](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+Changing the publishing source requires a repository administrator or maintainer. See [GitHub’s publishing source guide](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+
+The **Publish website on GitHub Pages** workflow publishes changes to website files on `main`. It stages the public files in `_site`, then uses GitHub’s official Pages setup, artifact upload, and deployment actions. The built-in workflow token has only the contents read, Pages write, and identity token permissions needed for deployment. No personal token or repository secret is required.
 
 ## Preview locally
 
@@ -38,5 +40,6 @@ Keep Issues enabled in this repository. Request and feedback forms are in `.gith
 - `404.html`: custom GitHub Pages error page.
 - `.nojekyll`: publishes static files directly.
 - `.github/ISSUE_TEMPLATE/`: access request and feedback forms.
+- `.github/workflows/pages.yml`: deploys the website on changes or a manual workflow run.
 
 The site uses local assets and system fonts and works without JavaScript. The existing repository license is preserved.
